@@ -1,6 +1,6 @@
 # Payment Service
 
-Purpose: Handle payments; debit payer wallet, credit merchant, apply fees, emit events.
+Purpose: Handle payments; debit payer wallet by calling wallet service, call merchant settlement, audit each step and call notification service
 
 Models
 
@@ -21,48 +21,18 @@ Models
   - `amount` (decimal)
   - `status` (string)
 
-Fee integration (included from Fee Service)
 
-Purpose: Calculate dynamic fees by region/currency/rules. The Payment service should call the Fee service to obtain the fee amount before performing wallet debits/merchant credits.
 
-Fee models (for reference)
-
-- FeeConfig
-  - `id` (UUID)
-  - `region` (string)
-  - `currency` (string)
-  - `percentage` (decimal)
-  - `fixed` (decimal)
-  - `effectiveFrom` (date)
-
-Fee endpoints (from Fee Service)
-
-- GET `/fees` — List fee configs
-  - Response: `200 OK` (array of FeeConfig)
-
-- GET `/fees/calculate?amount=XX&currency=USD&region=EU` — Calculate fee
-  - Response: `200 OK`
-    ```json
-    {
-      "amount":100.00,
-      "fee":2.50,
-      "netAmount":97.50,
-      "currency":"USD"
-    }
-    ```
-
-Integration notes (how Payment uses the Fee service)
 
 1. When a payment request arrives, Payment service should:
    - Validate request 
-   - Call Fee Service `/fees/calculate` with the `amount`, `currency`, and optional `region` or merchant-specific context.
-   - Use returned `fee` and `netAmount` to:
-     - Debit the payer wallet for the full `amount`.
-     - Credit the merchant with `netAmount`.
-     - Persist the `fee` in the Payment record and emit an event for accounting/fee distribution.
+   - Call wallet serrvice
+   - Debit the payer wallet for the full `amount`.
+   - Calculate fee for the amount
+   - Persist the `fee` in the Payment record and merchant settlement
 
 2. Example flow (simplified):
-   - Client POSTs to Payment service `/payments` with:
+   - Client POSTs to Payment service `/payment/process` with:
      ```json
      {
        "payerWalletId":"<UUID>",
