@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: audit-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/auditdb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none        # use "validate" or "none" in production
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: false
+logging:
+  level:
+    root: INFO

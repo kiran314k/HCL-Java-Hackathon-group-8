@@ -1,10 +1,10 @@
-package com.hcl.wallet.merchant_settlement_service;
+package com.hcl.audit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MerchantSettlementServiceApplicationTests {
+class AuditApplicationTests {
 
 	@Test
 	void contextLoads() {
