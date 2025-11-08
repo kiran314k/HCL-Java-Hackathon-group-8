@@ -2,8 +2,8 @@
 
 Overview
 
-- Microservices: Wallet, Payment, Merchant, Fee, Notification, Audit, Settlement.
-- Tech: Java 17+, Spring Boot 3, OAuth2 Resource Server (JWT), PostgreSQL, Kafka/RabbitMQ (optional), Docker.
+- Microservices: Wallet, Payment, Merchant, Notification, Audit.
+- Tech: Java 17+, Spring Boot 3, OAuth2 Resource Server (JWT), MySQL, Kafka/RabbitMQ (optional), Docker.
 - Each service exposes REST endpoints and Swagger/OpenAPI docs at `/swagger-ui/index.html`.
 
 Quick start (local)
