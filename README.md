@@ -33,11 +33,12 @@ Services (each under its own folder)
 
 Service endpoints
 
-Base URL — /api/v1/wallets
-Base URL — /api/v1/payments
-Base URL — /api/v1/merchants
-Base URL — /api/v1/notifications
-Base URL — /api/v1/customers
+- `Base URL` — /api/v1/wallets
+- `Base URL` — /api/v1/payments
+- `Base URL` — api/v1/merchants
+- `Base URL` — /api/v1/notifications
+- `Base URL` — /api/v1/customers
+
 
 Docker notes
 
