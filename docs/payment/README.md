@@ -54,7 +54,7 @@ Fee endpoints (from Fee Service)
 Integration notes (how Payment uses the Fee service)
 
 1. When a payment request arrives, Payment service should:
-   - Validate request and authorization.
+   - Validate request 
    - Call Fee Service `/fees/calculate` with the `amount`, `currency`, and optional `region` or merchant-specific context.
    - Use returned `fee` and `netAmount` to:
      - Debit the payer wallet for the full `amount`.

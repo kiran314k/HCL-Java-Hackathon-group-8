@@ -82,19 +82,4 @@ Endpoints
     }
     ```
 
-cURL example
-
-```bash
-curl -X POST http://localhost:8085/wallets \
-  -H "Authorization: Bearer <token>" \
-  -H "Content-Type: application/json" \
-  -d '{"customerId":"<uuid>","currency":"USD"}'
-```
-
-Environment variables (example)
-
-- `SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/wallet_db`
-- `SPRING_DATASOURCE_USERNAME=postgres`
-- `SPRING_DATASOURCE_PASSWORD=secret`
-- `SERVER_PORT=8085`
 
