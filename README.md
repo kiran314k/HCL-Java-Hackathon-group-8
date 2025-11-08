@@ -1,4 +1,4 @@
-# E-Wallet Microservices System (Spring Boot + OAuth2)
+# E-Wallet Microservices System (Spring Boot)
 
 Overview
 
