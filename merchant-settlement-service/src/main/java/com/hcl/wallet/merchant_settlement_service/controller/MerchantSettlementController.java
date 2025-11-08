@@ -1,7 +1,7 @@
 package com.hcl.wallet.merchant_settlement_service.controller;
 
 import com.hcl.wallet.merchant_settlement_service.dto.MerchantSettlementRequest;
-import com.hcl.wallet.merchant_settlement_service.model.MerchantSettlement;
+import com.hcl.wallet.merchant_settlement_service.model.TransactionLog;
 import com.hcl.wallet.merchant_settlement_service.service.MerchantSettlementService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +20,9 @@ public class MerchantSettlementController {
     }
 
     @PostMapping
-    public ResponseEntity<MerchantSettlement> create(@RequestBody MerchantSettlementRequest req) {
-        MerchantSettlement created = service.createSettlement(req);
+    public ResponseEntity<TransactionLog> create(@RequestBody MerchantSettlementRequest req) {
+        TransactionLog created = service.createSettlement(req);
         return ResponseEntity.created(URI.create("/api/merchant-settlements/" + created.getId())).body(created);
     }
 
-    @GetMapping
-    public ResponseEntity<List<MerchantSettlement>> list() {
-        return ResponseEntity.ok(service.listAll());
-    }
 }

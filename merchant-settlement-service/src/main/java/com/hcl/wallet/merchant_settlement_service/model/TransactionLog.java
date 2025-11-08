@@ -15,6 +15,9 @@ public class TransactionLog {
     @Column(name = "txn_id")
     private Long id;
 
+    @Column(name = "payment_transaction_id")
+    private Long paymentTransactionId;
+
     @Column(name = "wallet_id")
     private Long walletId;
 
@@ -42,8 +45,9 @@ public class TransactionLog {
     public TransactionLog() {
     }
 
-    public TransactionLog(Long id, Long walletId, Long merchantId, BigDecimal amount, String type, String status, LocalDateTime initiatedAt, LocalDateTime completedAt, String remarks) {
+    public TransactionLog(Long id, Long paymentTransactionId, Long walletId, Long merchantId, BigDecimal amount, String type, String status, LocalDateTime initiatedAt, LocalDateTime completedAt, String remarks) {
         this.id = id;
+        this.paymentTransactionId = paymentTransactionId;
         this.walletId = walletId;
         this.merchantId = merchantId;
         this.amount = amount;
@@ -60,6 +64,14 @@ public class TransactionLog {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(Long paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
     }
 
     public Long getWalletId() {
@@ -131,11 +143,11 @@ public class TransactionLog {
         if (this == o) return true;
         if (!(o instanceof TransactionLog)) return false;
         TransactionLog that = (TransactionLog) o;
-        return Objects.equals(id, that.id) && Objects.equals(walletId, that.walletId) && Objects.equals(merchantId, that.merchantId) && Objects.equals(amount, that.amount) && Objects.equals(type, that.type) && Objects.equals(status, that.status) && Objects.equals(initiatedAt, that.initiatedAt) && Objects.equals(completedAt, that.completedAt) && Objects.equals(remarks, that.remarks);
+        return Objects.equals(id, that.id) && Objects.equals(paymentTransactionId, that.paymentTransactionId) && Objects.equals(walletId, that.walletId) && Objects.equals(merchantId, that.merchantId) && Objects.equals(amount, that.amount) && Objects.equals(type, that.type) && Objects.equals(status, that.status) && Objects.equals(initiatedAt, that.initiatedAt) && Objects.equals(completedAt, that.completedAt) && Objects.equals(remarks, that.remarks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, walletId, merchantId, amount, type, status, initiatedAt, completedAt, remarks);
+        return Objects.hash(id, paymentTransactionId, walletId, merchantId, amount, type, status, initiatedAt, completedAt, remarks);
     }
 }

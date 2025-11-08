@@ -1,7 +1,6 @@
 package com.hcl.wallet.merchant_settlement_service.controller;
 
 import com.hcl.wallet.merchant_settlement_service.dto.MerchantSettlementRequest;
-import com.hcl.wallet.merchant_settlement_service.model.MerchantSettlement;
 import com.hcl.wallet.merchant_settlement_service.service.MerchantSettlementService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,14 +29,11 @@ public class MerchantSettlementControllerTest {
     @Autowired
     ObjectMapper mapper;
 
-    @MockBean
     MerchantSettlementService service;
 
-    MerchantSettlement example;
 
     @BeforeEach
     void setup() {
-        example = new MerchantSettlement(1L, 1L, 100L, 1000L, BigDecimal.valueOf(5.25), LocalDateTime.now());
     }
 
     @Test
@@ -52,11 +48,6 @@ public class MerchantSettlementControllerTest {
                 .andExpect(status().isCreated());
     }
 
-    @Test
-    void listEndpoint_returnsOk() throws Exception {
-        Mockito.when(service.listAll()).thenReturn(java.util.List.of(example));
 
-        mvc.perform(get("/api/merchant-settlements")).andExpect(status().isOk());
-    }
 }
 

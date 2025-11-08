@@ -9,11 +9,11 @@ public class MerchantSettlementRequest {
     @NotNull
     private Long merchantId;
 
-    @NotNull
-    private Long transactionId;
-
     // Wallet id from which funds originate
     private Long walletId;
+
+    // Original payment transaction id (optional)
+    private Long paymentTransactionId;
 
     @NotNull
     @Min(value = 0)
@@ -22,16 +22,11 @@ public class MerchantSettlementRequest {
     public MerchantSettlementRequest() {
     }
 
-    public MerchantSettlementRequest(Long merchantId, Long transactionId, BigDecimal amount) {
+    // New constructor that includes paymentTransactionId
+    public MerchantSettlementRequest(Long merchantId, Long transactionId, Long walletId, Long paymentTransactionId, BigDecimal amount) {
         this.merchantId = merchantId;
-        this.transactionId = transactionId;
-        this.amount = amount;
-    }
-
-    public MerchantSettlementRequest(Long merchantId, Long transactionId, Long walletId, BigDecimal amount) {
-        this.merchantId = merchantId;
-        this.transactionId = transactionId;
         this.walletId = walletId;
+        this.paymentTransactionId = paymentTransactionId;
         this.amount = amount;
     }
 
@@ -43,20 +38,20 @@ public class MerchantSettlementRequest {
         this.merchantId = merchantId;
     }
 
-    public Long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
     public Long getWalletId() {
         return walletId;
     }
 
     public void setWalletId(Long walletId) {
         this.walletId = walletId;
+    }
+
+    public Long getPaymentTransactionId() {
+        return paymentTransactionId;
+    }
+
+    public void setPaymentTransactionId(Long paymentTransactionId) {
+        this.paymentTransactionId = paymentTransactionId;
     }
 
     public BigDecimal getAmount() {

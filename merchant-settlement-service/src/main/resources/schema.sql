@@ -10,7 +10,7 @@ CREATE TABLE merchant_settlement (
 CREATE TABLE transaction_log (
   txn_id BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   payment_transaction_id BIGINT UNSIGNED,
-  sender_wallet_id BIGINT UNSIGNED,
+  wallet_id BIGINT UNSIGNED,
   merchant_id BIGINT UNSIGNED,
   amount DECIMAL(15,2),
   type VARCHAR(20),
